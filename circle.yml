@@ -1,0 +1,6 @@
+machine:
+
+test:
+  override:
+    - py.test tests
+        timeout: 240
