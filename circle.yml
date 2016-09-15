@@ -3,5 +3,5 @@ test:
     - python runtests.py:
         parallel: true
         files:
-            - sample_test/tests/unit
-            - sample_test/tests/integration
+            - tests/unit/**/*.py
+            - tests/integration/**/*.py
