@@ -1,5 +1,5 @@
 machine:
-
+    - python
 test:
   override:
     - py.test tests
