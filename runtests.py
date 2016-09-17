@@ -2,13 +2,11 @@ import sys
 import os
 import pytest
 
-test_files = 'tests/unit tests/integration'
+test_files = ['tests/unit', 'tests/integration']
 
 if len(sys.argv) > 1:
-    test_files = ' '.join(sys.argv[1:])
-    init = False
+    test_files = sys.argv[1:]
 
-os.environ['PYTHONPATH'] = os.path.dirname(os.path.realpath(__file__))
-
-status = pytest.main('{}'.format(test_files))
+os.environ['PYTHONPATH'] = '.'
+status = pytest.main(test_files)
 exit(status)
