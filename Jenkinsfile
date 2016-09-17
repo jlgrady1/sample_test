@@ -1,5 +1,5 @@
 parallel (
-    "stream Integration" : {
+    "stream 1" : {
         node {
             stage("Checkout") {
                 checkout scm
@@ -18,9 +18,7 @@ parallel (
             }
         }
     }
-
-
-    "stream Unit" : {
+    "stream 2" : {
         node {
             stage("Checkout") {
                 checkout scm
