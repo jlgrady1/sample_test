@@ -1,10 +1,12 @@
 node {
-    stage 'Install Dependencies'
+    stage 'Checkout'
     checkout scm
-    // sh "virtualenv ${env.WORKSPACE}/venv"
-    // sh ". venv/bin/activate"
-    // sh "${env.WORKSPACE}/venv/bin/pip install -r requirements.txt"
 
-    // stage 'Test'
-    // sh "${env.WORKSPACE}/venv/bin/python install runtests.py"
+    stage 'Install Dependencies'
+    sh 'virtualenv venv'
+    sh '. venv/bin/activate'
+    sh 'pip install -r requirements.txt'
+
+    stage 'Test'
+    sh 'python install runtests.py'
 }
