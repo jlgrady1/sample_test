@@ -17,7 +17,7 @@ parallel (
                 sh "python runtests.py tests/integration"
             }
         }
-    }
+    },
     "stream 2" : {
         node {
             stage("Checkout") {
