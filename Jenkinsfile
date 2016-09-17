@@ -1,7 +1,6 @@
 node {
     stage 'Install Dependencies'
-    env.WORKSPACE = pwd()
-    echo "${env.WORKSPACE}"
+    checkout scm
     // sh "virtualenv ${env.WORKSPACE}/venv"
     // sh ". venv/bin/activate"
     // sh "${env.WORKSPACE}/venv/bin/pip install -r requirements.txt"
