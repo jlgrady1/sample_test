@@ -1,7 +1,9 @@
 node {
-    echo 'hello world'
-    virtualenv venv
-    . venv/bin/activate
-    pip install -r requirements.txt
-    python runtests.py
+    stage 'Install Dependencies'
+    sh 'virtualenv venv'
+    sh '. venv/bin/activate'
+    sh 'pip install -r requirements.txt'
+
+    stage 'Test'
+    sh 'python runtests.py'
 }
