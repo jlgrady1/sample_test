@@ -6,10 +6,10 @@ node {
 
 stage "Test"
 def branches = [:]
-testFiles.each {
-    branches["Test - ${it}"] = {
+for (int i = 0; i < testFiles.size(); i++) {
+    branches[testFiles[i]] = {
         node {
-            runTests
+            runTests()
         }
     }
 }
