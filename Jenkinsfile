@@ -1,43 +1,23 @@
-node {
-    echo "Starting Build"
-}
+testFiles = ["tests/unit", "tests/integration"]
+stage "Starting Build"
 
-parallel (
-    "stream 1" : {
+stage "Test"
+def branches = [:]
+testFiles.each {
+    branches["Test - ${it}"] = {
         node {
-            stage("Checkout") {
-                checkout scm
-            }
-
-            stage("Install Dependencies") {
-                installDependencies()
-            }
-
-            stage("Test") {
-                sh "python runtests.py tests/integration"
-            }
-        }
-    },
-    "stream 2" : {
-        node {
-            stage("Checkout") {
-                checkout scm
-            }
-
-            stage("Install Dependencies") {
-                installDependencies()
-            }
-
-            stage("Test") {
-                sh "python runtests.py tests/unit"
-            }
+            runTests
         }
     }
-)
+}
 
+parallel branches
 
 void runTests(def args) {
-
+    node {
+    checkout scm
+    installDependencies()
+    }
 }
 
 void installDependencies() {
