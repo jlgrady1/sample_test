@@ -1,5 +1,8 @@
 testFiles = ["tests/unit", "tests/integration"]
 stage "Starting Build"
+node {
+    echo "Starting"
+}
 
 stage "Test"
 def branches = [:]
