@@ -6,11 +6,7 @@ parallel (
             }
 
             stage("Install Dependencies") {
-                sh "virtualenv venv"
-                env.WORKSPACE = pwd()
-                env.PATH="${env.WORKSPACE}/venv/bin:/usr/bin:${env.PATH}"
-                sh ". venv/bin/activate"
-                sh "pip install -r requirements.txt"
+                installDependencies()
             }
 
             stage("Test") {
@@ -25,11 +21,7 @@ parallel (
             }
 
             stage("Install Dependencies") {
-                sh "virtualenv venv"
-                env.WORKSPACE = pwd()
-                env.PATH="${env.WORKSPACE}/venv/bin:/usr/bin:${env.PATH}"
-                sh ". venv/bin/activate"
-                sh "pip install -r requirements.txt"
+                installDependencies()
             }
 
             stage("Test") {
@@ -38,3 +30,16 @@ parallel (
         }
     }
 )
+
+
+void runTests(def args) {
+
+}
+
+void installDependencies() {
+    sh "virtualenv venv"
+    env.WORKSPACE = pwd()
+    env.PATH="${env.WORKSPACE}/venv/bin:/usr/bin:${env.PATH}"
+    sh ". venv/bin/activate"
+    sh "pip install -r requirements.txt"
+}

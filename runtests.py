@@ -8,5 +8,13 @@ if len(sys.argv) > 1:
     test_files = sys.argv[1:]
 
 os.environ['PYTHONPATH'] = '.'
-status = pytest.main(test_files)
+
+opts = [
+    '-svvvv',
+    '--junitxml=/tmp/test.xml',
+]
+
+test_files_str = " ".join(test_files)
+opts_str = " ".join(opts)
+status = pytest.main('{} {}'.format(test_files_str, opts_str))
 exit(status)
