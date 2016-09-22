@@ -1,3 +1,7 @@
+node {
+    echo "Starting Build"
+}
+
 parallel (
     "stream 1" : {
         node {
