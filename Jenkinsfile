@@ -4,23 +4,16 @@ node {
     echo "Starting"
 }
 
-stage "Test"
-def branches = [:]
-for (int i = 0; i < testFiles.size(); i++) {
-    branches[testFiles[i]] = {
+def runTests(String testFile) {
+    cmd = {
         node {
-            runTests()
+            echo "Running on ${testFile}"
+            checkout scm
+            installDependencies()
+            sh "python runtests.py ${testFile}"
         }
     }
-}
-
-parallel branches
-
-void runTests(def args) {
-    node {
-    checkout scm
-    installDependencies()
-    }
+    return cmd
 }
 
 void installDependencies() {
@@ -30,3 +23,12 @@ void installDependencies() {
     sh ". venv/bin/activate"
     sh "pip install -r requirements.txt"
 }
+
+stage "Test"
+def branches = [:]
+for (int i = 0; i < testFiles.size(); i++) {
+    branches[testFiles[i]] = runTests(testFiles[i])
+}
+
+parallel branches
+
