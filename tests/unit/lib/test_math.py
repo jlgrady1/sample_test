@@ -7,7 +7,7 @@ from lib.math import Point
 class TestPoint(BaseTest):
     def test_something(self):
         time.sleep(45)
-        assert 1 == 1
+        assert 1 == 2
 
     def test_get_distance(self):
         d1 = Point.get_distance(5, 0)
